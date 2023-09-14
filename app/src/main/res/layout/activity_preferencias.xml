@@ -31,4 +31,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:layout_constraintVertical_bias="0.054" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="164dp"
+        android:layout_height="140dp"
+        android:text="@string/problemas_preferencias"
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="336dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

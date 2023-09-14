@@ -12,4 +12,7 @@
     <string name="About">Sobre Nosotros</string>
     <string name="Preferencias">Preferencias</string>
     <string name="Color">Color</string>
+    <string name="problemas_preferencias">Por el momento no ay preferencias elegibles,
+    por favor esperara a la siguiente actualización
+</string>>
 </resources>
