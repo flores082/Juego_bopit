@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Juego_bopit</string>
+    <string name="regresar">regresar</string>
+    <string name="button">Nosotros</string>
+    <string name="button2">Preferencias</string>
+    <string name="nosotros">Este proyecto/App es creado por Michel Flores,
+        Estudiante en IDVRV, en el ramo de dispositivos móviles.
+        Este proyecto/App trata de un juego parecido al “Bop-It”,
+        pero para celulares.</string>
+    <string name="momento">Asta el momento la aplicación tiene el inicio, about,
+        pantalla de presentación y preferencias utilizando los xml y etc…</string>
+    <string name="About">Sobre Nosotros</string>
+    <string name="Preferencias">Preferencias</string>
+    <string name="Color">Color</string>
 </resources>
