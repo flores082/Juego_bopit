@@ -7,12 +7,26 @@
         Estudiante en IDVRV, en el ramo de dispositivos móviles.
         Este proyecto/App trata de un juego parecido al “Bop-It”,
         pero para celulares.</string>
+
     <string name="momento">Asta el momento la aplicación tiene el inicio, about,
         pantalla de presentación y preferencias utilizando los xml y etc…</string>
+
     <string name="About">Sobre Nosotros</string>
     <string name="Preferencias">Preferencias</string>
+    <string name="Musica">Musica</string>
     <string name="Color">Color</string>
+    <string name="Juego">Juego</string>
+    <string name="Start">Start</string>
+    <string name="Stop">Stop</string>
+    <string name="Derrota">Derrota</string>
+    <string name="Victoria">Victoria</string>
+
     <string name="problemas_preferencias">Por el momento no ay preferencias elegibles,
-    por favor esperara a la siguiente actualización
-</string>>
+    por favor esperara a la siguiente actualización</string>
+    <string name="A">Sonido de Fondo</string>
+    <string name="B">Sonido general del Juego</string>
+
+    <string name="title_activity_juego_movil">JuegoMovil</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>>
 </resources>
