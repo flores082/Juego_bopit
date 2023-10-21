@@ -16,7 +16,7 @@ class Musica : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var mediaPlayerV: MediaPlayer
     private lateinit var mediaPlayerD: MediaPlayer
-
+    var i: Int = 0
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,16 +32,40 @@ class Musica : AppCompatActivity() {
         val buttonOKAbout4 = findViewById<Button>(R.id.Derrota)
 
         buttonOKAbout1.setOnClickListener {
-                mediaPlayer.start()
+            i=0
+            onStart()
         }
         buttonOKAbout2.setOnClickListener {
-              mediaPlayer.pause()
+              onPause()
         }
         buttonOKAbout3.setOnClickListener {
-            mediaPlayerV.start()
+            i=1
+            onStart()
         }
         buttonOKAbout4.setOnClickListener {
-            mediaPlayerD.start()
+            i=2
+            onStart()
         }
     }
+
+     override fun onStart() {
+        super.onStart()
+         when (i) {
+             0 -> {
+                 mediaPlayer.start()
+             }
+             1 -> {
+                 mediaPlayerV.start()
+             }
+             2 -> {
+                 mediaPlayerD.start()
+             }
+         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mediaPlayer.pause()
+    }
+
 }

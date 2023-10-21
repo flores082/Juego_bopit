@@ -38,10 +38,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intentAbout3)
             mediaPlayer.stop()
         }
-        /*buttonOKAbout4.setOnClickListener {
-            val intentAbout4 = Intent(this, JuegoMovil::class.java)
+        buttonOKAbout4.setOnClickListener {
+            val intentAbout4 = Intent(this, Detector_Juego::class.java)
             startActivity(intentAbout4)
             mediaPlayer.stop()
-        }*/
+        }
     }
 }
