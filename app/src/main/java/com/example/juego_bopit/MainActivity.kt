@@ -1,5 +1,6 @@
 package com.example.juego_bopit
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mediaPlayer : MediaPlayer
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         val buttonOKAbout2 = findViewById<Button>(R.id.button2)
         val buttonOKAbout3 = findViewById<Button>(R.id.button4)
         val buttonOKAbout4 = findViewById<Button>(R.id.button5)
+        val buttonOKAbout5 = findViewById<Button>(R.id.Sensor)
 
         buttonOKAbout.setOnClickListener {
             val intentAbout = Intent(this, About::class.java)
@@ -41,6 +44,11 @@ class MainActivity : AppCompatActivity() {
         buttonOKAbout4.setOnClickListener {
             val intentAbout4 = Intent(this, Detector_Juego::class.java)
             startActivity(intentAbout4)
+            mediaPlayer.stop()
+        }
+        buttonOKAbout5.setOnClickListener {
+            val intentAbout5 = Intent(this, Sensor::class.java)
+            startActivity(intentAbout5)
             mediaPlayer.stop()
         }
     }

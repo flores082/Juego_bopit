@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/TextViewDetector"
+        android:id="@+id/mobimineto"
         android:layout_width="317dp"
         android:layout_height="91dp"
         android:gravity="center"
