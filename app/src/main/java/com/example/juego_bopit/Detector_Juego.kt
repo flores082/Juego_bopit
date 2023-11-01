@@ -1,6 +1,7 @@
 package com.example.juego_bopit
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,11 +9,14 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.widget.TextView
 import java.util.Random
+import android.os.Handler
+import android.widget.Button
 
 class Detector_Juego : AppCompatActivity(),
     GestureDetector.OnGestureListener,
     GestureDetector.OnDoubleTapListener {
 
+    private lateinit var TextView: TextView
     private lateinit var mTextView: TextView
     private lateinit var gestureDetector: GestureDetector
 
@@ -23,42 +27,65 @@ class Detector_Juego : AppCompatActivity(),
                           "onScroll","onLongPress","onFling")
 
     private var palabraActual: String = ""
-    private var palabrasUsadas = mutableSetOf<String>()
     private var juegoTerminado = false
 
     private lateinit var mediaPlayerV: MediaPlayer
     private lateinit var mediaPlayerD: MediaPlayer
     private lateinit var yes: MediaPlayer
     private lateinit var no: MediaPlayer
+    var Puntaje = 0
+    val Tiempo= 600L
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detector_juego)
 
-
         mediaPlayerV = MediaPlayer.create(this, R.raw.victoria)
         mediaPlayerD = MediaPlayer.create(this, R.raw.derrota)
         yes = MediaPlayer.create(this, R.raw.yes)
         no = MediaPlayer.create(this, R.raw.no)
-        if(!juegoTerminado) {
-            mTextView = findViewById(R.id.mobimineto)
-            gestureDetector = GestureDetector(this, this)
-            gestureDetector.setOnDoubleTapListener(this)
-            mostrarPalabra()
-        }
-        else if(juegoTerminado==true)
-        {
-            mTextView.text = "Derrota"
-            mediaPlayerD.start()
-        }
+
+        TextView = findViewById(R.id.Puntaje)
+        mTextView = findViewById(R.id.mobimineto)
+        gestureDetector = GestureDetector(this, this)
+        gestureDetector.setOnDoubleTapListener(this)
+        mostrarPalabra()
 
     }
 
     private fun mostrarPalabra(){
-        if(!juegoTerminado){
+
+        val buttonOKAbout = findViewById<Button>(R.id.Reinisio)
+
+        if(!juegoTerminado && Puntaje<=5){
             val numeroAleatorio = random.nextInt(palabra.size)
             palabraActual = palabra[numeroAleatorio]
             mTextView.text = palabraActual
+            TextView.text = "Puntaje:"+Puntaje
+            buttonOKAbout.setOnClickListener {
+                Puntaje=0
+                juegoTerminado=false
+            }
+        }
+        else if(juegoTerminado==true && Puntaje<=5)
+        {
+            mTextView.text = "Derrota"
+            mediaPlayerD.start()
+            buttonOKAbout.setOnClickListener {
+                Puntaje=0
+                juegoTerminado=false
+            }
+        }
+        else if(Puntaje>=5)
+        {
+            juegoTerminado=true
+            mTextView.text = "Victoria"
+            mediaPlayerV.start()
+            buttonOKAbout.setOnClickListener {
+                Puntaje=0
+                juegoTerminado=false
+            }
         }
     }
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -67,99 +94,189 @@ class Detector_Juego : AppCompatActivity(),
     }
 
     override fun onSingleTapConfirmed(motionEvent: MotionEvent): Boolean {
+        val tiempoDeEspera0 = 1000L
+        val tiempoDeEspera1 = 3000L
+        var Accion = false
+        Handler().postDelayed({
         if(palabraActual=="onSingleTapConfirmed"){
             yes.start()
-            mostrarPalabra()
+            Puntaje++
+            Handler().postDelayed({
+                Accion=true
+                mostrarPalabra()
+            }, tiempoDeEspera0)
         }
-        else {
-            no.start()
-        }
+        else if(!Accion && palabraActual!="onSingleTapConfirmed"){
+            Handler().postDelayed({
+                no.start()
+            }, tiempoDeEspera1)
+        }},Tiempo)
         return true
     }
 
     override fun onDoubleTap(motionEvent: MotionEvent): Boolean {
+        val tiempoDeEspera0 = 1000L
+        val tiempoDeEspera1 = 3000L
+        var Accion = false
+        Handler().postDelayed({
         if(palabraActual=="onDoubleTap"){
             yes.start()
-            mostrarPalabra()
+            Puntaje++
+            Handler().postDelayed({
+                Accion=true
+                mostrarPalabra()
+            }, tiempoDeEspera0)
         }
-        else {
-            no.start()
-        }
+        else if(!Accion && palabraActual!="onDoubleTap"){
+            Handler().postDelayed({
+                no.start()
+            }, tiempoDeEspera1)
+        }},Tiempo)
         return true
     }
 
     override fun onDoubleTapEvent(motionEvent: MotionEvent): Boolean {
+        val tiempoDeEspera0 = 1000L
+        val tiempoDeEspera1 = 3000L
+        var Accion = false
+        Handler().postDelayed({
         if(palabraActual=="onDoubleTapEvent"){
             yes.start()
-            mostrarPalabra()
+            Puntaje++
+            Handler().postDelayed({
+                Accion=true
+                mostrarPalabra()
+            }, tiempoDeEspera0)
         }
-        else {
-            no.start()
-        }
+        else if(!Accion && palabraActual!="onDoubleTapEvent"){
+            Handler().postDelayed({
+                no.start()
+            }, tiempoDeEspera1)
+        }},Tiempo)
         return true
     }
 
     override fun onDown(motionEvent: MotionEvent): Boolean {
+        val tiempoDeEspera0 = 1000L
+        val tiempoDeEspera1 = 3000L
+        var Accion = false
+        Handler().postDelayed({
         if(palabraActual=="onDown"){
             yes.start()
-            mostrarPalabra()
+            Puntaje++
+            Handler().postDelayed({
+                Accion=true
+                mostrarPalabra()
+            }, tiempoDeEspera0)
         }
-        else {
-            no.start()
-        }
+        else if(!Accion && palabraActual!="onDown"){
+            Handler().postDelayed({
+                no.start()
+            }, tiempoDeEspera1)
+        }},Tiempo)
         return true
     }
 
     override fun onShowPress(motionEvent: MotionEvent) {
+        val tiempoDeEspera0 = 1000L
+        val tiempoDeEspera1 = 3000L
+        var Accion = false
+        Handler().postDelayed({
         if(palabraActual=="onShowPress"){
             yes.start()
-            mostrarPalabra()
+            Puntaje++
+            Handler().postDelayed({
+                Accion=true
+                mostrarPalabra()
+            }, tiempoDeEspera0)
         }
-        else {
-            no.start()
-        }
+        else if(!Accion && palabraActual!="onShowPress"){
+            Handler().postDelayed({
+                no.start()
+            }, tiempoDeEspera1)
+        }},Tiempo)
     }
 
     override fun onSingleTapUp(motionEvent: MotionEvent): Boolean {
+        val tiempoDeEspera0 = 1000L
+        val tiempoDeEspera1 = 3000L
+        var Accion = false
+        Handler().postDelayed({
         if(palabraActual=="onSingleTapUp"){
             yes.start()
-            mostrarPalabra()
+            Puntaje++
+            Handler().postDelayed({
+                Accion=true
+                mostrarPalabra()
+            }, tiempoDeEspera0)
         }
-        else {
-            no.start()
-        }
+        else if(!Accion && palabraActual!="onSingleTapUp"){
+            Handler().postDelayed({
+                no.start()
+            }, tiempoDeEspera1)
+        }},Tiempo)
         return true
     }
 
     override fun onScroll(motionEvent: MotionEvent, motionEvent1: MotionEvent, v: Float, v1: Float): Boolean {
+        val tiempoDeEspera0 = 1000L
+        val tiempoDeEspera1 = 3000L
+        var Accion = false
+        Handler().postDelayed({
         if(palabraActual=="onScroll"){
             yes.start()
-            mostrarPalabra()
+            Puntaje++
+            Handler().postDelayed({
+                Accion=true
+                mostrarPalabra()
+            }, tiempoDeEspera0)
         }
-        else{
-            no.start()
-        }
+        else if(!Accion && palabraActual!="onScroll"){
+            Handler().postDelayed({
+                no.start()
+            }, tiempoDeEspera1)
+        }},Tiempo)
         return true
     }
 
     override fun onLongPress(motionEvent: MotionEvent) {
+        val tiempoDeEspera0 = 1000L
+        val tiempoDeEspera1 = 3000L
+        var Accion = false
+        Handler().postDelayed({
         if(palabraActual=="onLongPress"){
             yes.start()
-            mostrarPalabra()
+            Puntaje++
+            Handler().postDelayed({
+                Accion=true
+                mostrarPalabra()
+            }, tiempoDeEspera0)
         }
-        else{
-            no.start()
-        }
+        else if(!Accion && palabraActual!="onLongPress"){
+            Handler().postDelayed({
+                no.start()
+            }, tiempoDeEspera1)
+        }},Tiempo)
     }
 
     override fun onFling(motionEvent: MotionEvent, motionEvent1: MotionEvent, v: Float, v1: Float): Boolean {
-        if(palabraActual=="onFling"){
+        val tiempoDeEspera0 = 1000L
+        val tiempoDeEspera1 = 3000L
+        var Accion = false
+        Handler().postDelayed({
+        if (palabraActual == "onFling") {
             yes.start()
-            mostrarPalabra()
+            Puntaje++
+            Handler().postDelayed({
+                Accion = true
+                mostrarPalabra()
+            }, tiempoDeEspera0)
         }
-        else {
-            no.start()
-        }
+        if (!Accion && palabraActual != "onFling") {
+            Handler().postDelayed({
+                no.start()
+            }, tiempoDeEspera1)
+        }},Tiempo)
         return true
     }
 

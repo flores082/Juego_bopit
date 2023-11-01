@@ -55,7 +55,14 @@ class Sensor : Activity(), SensorEventListener {
         Y.text = "Y = ${event.values[1]}"
         Z.text = "Z = ${event.values[2]}"
 
-        if(event.values[0] <= 0.0f && event.values[1] <= 10f && event.values[2] <= 10f) {
+        val x = event.values[0]
+        val y = event.values[1]
+        val z = event.values[2]
+
+        val magnitudAceleracion = Math.sqrt((x * x + y * y + z * z).toDouble())
+        val umbralMovimientoRapido = 12.0
+
+        if(magnitudAceleracion>umbralMovimientoRapido) {
             Detector.text = "me mareo"
         }
         else{

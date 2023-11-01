@@ -21,6 +21,7 @@
     <string name="Derrota">Derrota</string>
     <string name="Victoria">Victoria</string>
     <string name="Sensor">Sensor</string>
+    <string name="Reinisiar">Reinisio</string>
 
     <string name="problemas_preferencias">Por el momento no ay preferencias elegibles,
     por favor esperara a la siguiente actualización</string>
