@@ -68,6 +68,7 @@ class Detector_Juego : AppCompatActivity(),
                 juegoTerminado=false
             }
         }
+        //no se toma{
         else if(juegoTerminado==true && Puntaje<=5)
         {
             mTextView.text = "Derrota"
@@ -77,6 +78,7 @@ class Detector_Juego : AppCompatActivity(),
                 juegoTerminado=false
             }
         }
+        //}
         else if(Puntaje>=5)
         {
             juegoTerminado=true
@@ -106,7 +108,7 @@ class Detector_Juego : AppCompatActivity(),
                 mostrarPalabra()
             }, tiempoDeEspera0)
         }
-        else if(!Accion && palabraActual!="onSingleTapConfirmed"){
+        else if(!Accion ){
             Handler().postDelayed({
                 no.start()
             }, tiempoDeEspera1)
@@ -127,7 +129,7 @@ class Detector_Juego : AppCompatActivity(),
                 mostrarPalabra()
             }, tiempoDeEspera0)
         }
-        else if(!Accion && palabraActual!="onDoubleTap"){
+        else if(!Accion){
             Handler().postDelayed({
                 no.start()
             }, tiempoDeEspera1)
@@ -148,7 +150,7 @@ class Detector_Juego : AppCompatActivity(),
                 mostrarPalabra()
             }, tiempoDeEspera0)
         }
-        else if(!Accion && palabraActual!="onDoubleTapEvent"){
+        else if(!Accion ){
             Handler().postDelayed({
                 no.start()
             }, tiempoDeEspera1)
@@ -169,7 +171,7 @@ class Detector_Juego : AppCompatActivity(),
                 mostrarPalabra()
             }, tiempoDeEspera0)
         }
-        else if(!Accion && palabraActual!="onDown"){
+        else if(!Accion){
             Handler().postDelayed({
                 no.start()
             }, tiempoDeEspera1)
@@ -190,7 +192,7 @@ class Detector_Juego : AppCompatActivity(),
                 mostrarPalabra()
             }, tiempoDeEspera0)
         }
-        else if(!Accion && palabraActual!="onShowPress"){
+        else if(!Accion){
             Handler().postDelayed({
                 no.start()
             }, tiempoDeEspera1)
@@ -210,7 +212,7 @@ class Detector_Juego : AppCompatActivity(),
                 mostrarPalabra()
             }, tiempoDeEspera0)
         }
-        else if(!Accion && palabraActual!="onSingleTapUp"){
+        else if(!Accion){
             Handler().postDelayed({
                 no.start()
             }, tiempoDeEspera1)
@@ -231,7 +233,7 @@ class Detector_Juego : AppCompatActivity(),
                 mostrarPalabra()
             }, tiempoDeEspera0)
         }
-        else if(!Accion && palabraActual!="onScroll"){
+        else if(!Accion){
             Handler().postDelayed({
                 no.start()
             }, tiempoDeEspera1)
@@ -252,7 +254,7 @@ class Detector_Juego : AppCompatActivity(),
                 mostrarPalabra()
             }, tiempoDeEspera0)
         }
-        else if(!Accion && palabraActual!="onLongPress"){
+        else if(!Accion){
             Handler().postDelayed({
                 no.start()
             }, tiempoDeEspera1)
@@ -272,7 +274,7 @@ class Detector_Juego : AppCompatActivity(),
                 mostrarPalabra()
             }, tiempoDeEspera0)
         }
-        if (!Accion && palabraActual != "onFling") {
+        if (!Accion) {
             Handler().postDelayed({
                 no.start()
             }, tiempoDeEspera1)
