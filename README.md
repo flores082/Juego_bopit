@@ -12,4 +12,4 @@ link del video: https://www.youtube.com/watch?v=UOt-4hFLjs8
 
 link del diagrama: https://lucid.app/lucidchart/4a1f3ea8-1017-4ab6-ab55-30fbc5c7cc1b/edit?viewport_loc=-1452%2C-310%2C1024%2C452%2C0_0&invitationId=inv_5b647926-5791-4d00-9d77-ad85d1448271
 
-link del apk:https://drive.google.com/drive/folders/1K3Dw4O3HXgLrtrLnkBTt7HheyRUFQgIy?usp=drive_link
+link del apk:https://drive.google.com/drive/folders/1K3Dw4O3HXgLrtrLnkBTt7HheyRUFQgIy
