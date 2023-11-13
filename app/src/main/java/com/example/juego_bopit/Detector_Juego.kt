@@ -27,10 +27,6 @@ class Detector_Juego : AppCompatActivity(),
     GestureDetector.OnGestureListener,
     GestureDetector.OnDoubleTapListener, SensorEventListener {
 
-    private lateinit var sharedPreferences: SharedPreferences
-
-    private lateinit var mainLayout: View
-
     private lateinit var TextView: TextView
     private lateinit var mTextView: TextView
     private lateinit var MTextView: TextView
@@ -54,8 +50,6 @@ class Detector_Juego : AppCompatActivity(),
     private var N = 60000
     val Tiempo= 3000L
     val Tiempo_palabra= 600L
-    private val tiempoTotal = 60000L // 60 segundos
-    private var tiempoRestante = tiempoTotal
     private var handler = Handler(Looper.getMainLooper())
     private var handler_derrota = Handler(Looper.getMainLooper())
     private lateinit var updateText: Runnable
