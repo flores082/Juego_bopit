@@ -22,7 +22,7 @@ link del diagrama: https://lucid.app/lucidchart/4a1f3ea8-1017-4ab6-ab55-30fbc5c7
 
 link del apk:https://drive.google.com/drive/folders/1HabVLSy187PRGEM5NkHuYVfjiW1X1Lpu?usp=sharing
 
-laboratorio-3.- crear el juego Boopit en solitario con las elecciones de jugador y funcional.
+laboratorio-4.- crear el juego Boopit en solitario con las elecciones de jugador y funcional.
 
 link del video:https://www.youtube.com/watch?v=nOqFQ1GKZEM
 
