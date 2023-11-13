@@ -51,28 +51,23 @@ class Detector_Juego : AppCompatActivity(),
     private lateinit var yes: MediaPlayer
     private lateinit var no: MediaPlayer
     var Puntaje = 0
-    var Puntaje_Guardado = 0
+    private var N = 60000
     val Tiempo= 3000L
-    val Tiempo_Cambio= 600L
-    val Tiempo_Error= 500L
+    val Tiempo_palabra= 600L
     private val tiempoTotal = 60000L // 60 segundos
     private var tiempoRestante = tiempoTotal
     private var handler = Handler(Looper.getMainLooper())
+    private var handler_derrota = Handler(Looper.getMainLooper())
     private lateinit var updateText: Runnable
-    private lateinit var updateTextC: Runnable
-    private lateinit var updateTextR: Runnable
-    private lateinit var runnableTiempo: Runnable
 
     //sensor{
-    private lateinit var X:TextView
-    private lateinit var Y:TextView
-    private lateinit var Z:TextView
     private lateinit var Accelerometro: Sensor
-
-    private lateinit var Detector:TextView
     //}
 
     //val PuntajeMayor = sharedPreferences.getInt("Puntaje_Mayor", 0)
+
+    private var temporizador: CountDownTimer? = null
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,48 +93,60 @@ class Detector_Juego : AppCompatActivity(),
         MTextView = findViewById(R.id.PuntajeMayor)
 
         updateText = updateTextRunnable
-        updateTextC = updateTextRunnable
-        updateTextR = updateTextRunnable
 
         var pref=getSharedPreferences("Puntaje_mayor",Context.MODE_PRIVATE)
         var PM = pref.getString("PM","0")?.toIntOrNull() ?: 0
         MTextView.setText(MP+PM)
 
-        mostrarPalabra()
-        //iniciarTemporizador()
 
-        if(juegoTerminado==true)
+
+        //dificultad
+        if(Puntaje>=3)
         {
-            Guardar()
+            Toast.makeText(this, "Novato", Toast.LENGTH_LONG).show()
+            N=45000
+        }else if(Puntaje>=6)
+        {
+            Toast.makeText(this, "Facil", Toast.LENGTH_LONG).show()
+            N=30000
+        }else if(Puntaje>=9){
+            Toast.makeText(this, "Normal", Toast.LENGTH_LONG).show()
+            N=20000
+        }
+        else if(Puntaje>=12){
+            Toast.makeText(this, "Dificil", Toast.LENGTH_LONG).show()
+            N=10000
+        }
+        else if(Puntaje>=15){
+            Toast.makeText(this, "Dios", Toast.LENGTH_LONG).show()
+            N=5000
         }
 
-
+        mostrarPalabra()
+        Play()
     }
 
     fun Play() {
-
-        object : CountDownTimer(60000, 1000) {
+        temporizador=object : CountDownTimer(N.toLong(), 1000) {
             // 60000 milisegundos (60 segundos), 1000 milisegundos (1 segundo) entre ticks
             override fun onTick(millisUntilFinished: Long) {
                 // Código que se ejecuta en cada tick del temporizador
-                val segundosRestantes = (millisUntilFinished / 1000).toInt()
             }
-        }
+
+            override fun onFinish() {
+                InCorrecto()
+                Guardar()
+            }
+        }.start()
+    }
+    fun reiniciar(){
+        temporizador?.cancel()
+        Play()
     }
 
     private val updateTextRunnable = object : Runnable {
         override fun run() {
-            handler.postDelayed(updateText, Tiempo)
-        }
-    }
-    private val updateTextRunnableC = object : Runnable {
-        override fun run() {
-            handler.postDelayed(updateTextC, Tiempo_Cambio)
-        }
-    }
-    private val updateTextRunnableR = object : Runnable {
-        override fun run() {
-            handler.postDelayed(updateTextR, Tiempo_Error)
+            handler_derrota.postDelayed(updateText, Tiempo)
         }
     }
 
@@ -148,27 +155,29 @@ class Detector_Juego : AppCompatActivity(),
             Puntaje++
             yes.start()
             //reiniciarTemporizador()
-            handler.post(updateTextC)
-            handler.removeCallbacks(updateTextR)
+            reiniciar()
+            //handler_derrota.removeCallbacks(updateTextRunnable,Tiempo)
             mostrarPalabra()
         }
     }
     fun InCorrecto(){
+
+        //handler_derrota.postDelayed({
         if(!juegoTerminado) {
-            handler.postDelayed(updateTextR, Tiempo_Error)
             mediaPlayerD.start()
-            juegoTerminado = true
             mTextView.text = "Derrota"
-        }
+            juegoTerminado = true
+        }//},Tiempo)
     }
     private fun mostrarPalabra() {
+        handler.postDelayed({
         if (!juegoTerminado) {
             Accion = false
             val numeroAleatorio = random.nextInt(palabra.size)
             palabraActual = palabra[numeroAleatorio]
             mTextView.text = palabraActual
             TextView.text = "Puntaje:" + Puntaje
-        }
+        }},Tiempo_palabra)
     }
 
     fun Guardar(){
@@ -283,26 +292,5 @@ class Detector_Juego : AppCompatActivity(),
             InCorrecto()
         }
         return true
-    }
-
-    private fun iniciarTemporizador() {
-        runnableTiempo = object : Runnable {
-            override fun run() {
-                // Actualiza el tiempo restante
-                tiempoRestante -= 1000L
-
-                // Programa la próxima ejecución después de 1 segundo
-                handler.postDelayed(this, 1000L)
-
-            }
-        }
-
-        // Programa la primera ejecución
-        handler.postDelayed(runnableTiempo, 1000L)
-    }
-    private fun reiniciarTemporizador() {
-        tiempoRestante = tiempoTotal
-        handler.removeCallbacks(runnableTiempo)
-        iniciarTemporizador()
     }
     }
